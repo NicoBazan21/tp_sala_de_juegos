@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="guardar()">
+  <h2>
+    <span class="entypo-plus-squared">
+      <i class="fa fa-sign-in">
+      </i>
+    </span>
+    Registro
+  </h2>
+
+  <span class="entypo-keyboard inputUserName">
+    <i class="fa-light fa-input-text"></i>
+  </span>
+  <input type="text" class="user" placeholder="nombre" formControlName="nombre"/>
+  <ng-container *ngIf="nombre?.hasError('pattern')">
+    <small class="text-danger">Solo debe contener letras</small>
+  </ng-container>
+
+  <span class="entypo-user inputUserIcon">
+    <i class="fa fa-user"></i>
+  </span>
+  <input type="text" class="user" placeholder="usuario" id="usuario" formControlName="usuario"/>
+  <small class="text-danger">
+    {{usuario?.getError('usuarioExiste')}}
+  </small>
+
+
+  <button class="submit">
+    <span class="entypo-user-add">
+      <i class="fa fa-lock"></i>
+    </span>
+  </button>
+
+  <span class="entypo-reply inputPassIcon">
+    <i class="fa fa-key"></i>
+  </span>
+  <input type="password" class="pass" placeholder="clave" formControlName="clave"/>
+  <ng-container *ngIf="clave?.hasError('minlength')">
+    <small class="text-danger">
+      La clave debe tener mínimo {{clave?.getError('minlength').requiredLength}} caracteres
+    </small>
+  </ng-container>
+
+  <span class="entypo-key inputPassIconDos">
+    <i class="fa fa-key"></i>
+  </span>
+  <input type="password" class="pass" placeholder="confirmar clave" formControlName="repiteClave"/>
+  <small class="text-danger">
+    {{repiteClave?.getError('noCoincide')}}
+  </small>
+
+
+</form>

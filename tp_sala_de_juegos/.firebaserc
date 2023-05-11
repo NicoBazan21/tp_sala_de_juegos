@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "prueba-e3234": {
+      "hosting": {
+        "tp_sala_de_juegos": [
+          "prueba-e3234"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "prueba-e3234"
+  }
+}
