@@ -1,0 +1,24 @@
+.titulo
+{
+  font-size: smaller;
+  font-style: oblique;
+  background-color: rgb(49, 141, 49);
+
+}
+
+.mensaje
+{
+  font-size: small;
+  background-color: rgb(133, 226, 133);
+}
+
+.borde
+{
+  border-color: green;
+}
+
+.centrar
+{
+  display: flex;
+  justify-content: center;
+}

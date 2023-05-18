@@ -1,0 +1,25 @@
+<p>mayor-menor works!</p>
+
+<div class="container" style="background-color: #aaa;">
+
+  <div class="row">
+    <div class="centrar row">
+      <div class="centrar">
+        <button class="btn btn-success col-sm-3" disabled *ngIf="this.gano">Ganaste</button>
+        <h2 class="btn btn-danger col-sm-3" *ngIf="this.perdio">Perdiste</h2>
+      </div>
+
+      <div class="centrar">
+          <img class="animacion" src="{{this.img}}">
+      </div>
+
+      <div class="centrar">
+          <button class="btn btn-secondary m-5" (click)="this.menor()">< Será menor </button>
+          <button class="btn btn-primary m-5" (click)="this.mayor()">Será mayor > </button>
+      </div>
+    </div>
+  </div>
+  <button routerLink="/home" class="btn btn-success col-sm d-flex justify-content-center"> Volver al home</button>
+</div>
+
+

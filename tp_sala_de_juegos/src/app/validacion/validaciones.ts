@@ -9,18 +9,15 @@ export function confirmarClave(): ValidatorFn
     const clave = formGroup.get('clave');
     const repiteClave = formGroup.get('repiteClave');
     const respuestaError = { noCoincide: 'la clave no coincide'};
-    /*         ValidationErrors = {string: ''}*/
 
     if(clave?.value !== repiteClave?.value)
     {
       formGroup.get('repiteClave')?.setErrors(respuestaError);
-      //Si los campos de contraseña no coinciden, devuelvo un error de validacion
       return respuestaError;
     }
     else
     {
       formGroup.get('repiteClave')?.setErrors(null);
-      //Si los campos de contraseá coinciden, la valdacion es correcta
       return null;
     }
   }
@@ -47,8 +44,6 @@ export function usuarioExiste(service: BdService): AsyncValidatorFn
     );
   };
 }
-
-
 
 
 export function validarCampos(a: string, b: string, c:string, d:string)

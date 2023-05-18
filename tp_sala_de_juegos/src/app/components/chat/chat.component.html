@@ -1,0 +1,19 @@
+
+<div class="container col-sm" style="background-color: #aaa;">
+  <h2 class="centrar">Chat en vivo:</h2>
+  <div class="centrar">
+      <div class="row col-sm-8" style="background-color: white;">
+      <ng-container *ngFor="let item of listaMensajes">
+          <p class="titulo">{{item.usuario}}</p>
+          <p class="mensaje">{{item.mensaje}}</p>
+      </ng-container>
+    </div>
+  </div>
+  <div class="centrar">
+  <form [formGroup]="form">
+    <input type="text" placeholder="escribe tu mensaje aqui..." formControlName="mensaje">
+    <button (click)="enviarMensaje()">Enviar</button>
+  </form>
+  </div>
+  <button routerLink="/home" class="btn btn-success col-sm d-flex justify-content-center"> Volver al home</button>
+</div>

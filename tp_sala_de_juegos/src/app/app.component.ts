@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tp_sala_de_juegos';
+
+  enviar: any;
+
+  atraparUsuario($event: any)
+  {
+    console.log($event);
+    this.enviar = $event;
+  }
 }

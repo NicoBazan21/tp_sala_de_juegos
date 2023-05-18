@@ -15,7 +15,8 @@ export class BdService {
   constructor(private firestore: Firestore)
   {
   }
-
+  sesionIniciada = false;
+  usuario!: any;
   coleccionUsuarios: CollectionReference<DocumentData> = collection(this.firestore, 'usuarios');
 
   guardar(user: Usuario)
@@ -54,6 +55,12 @@ export class BdService {
   {
     const documento = doc(this.coleccionUsuarios, user.id);
     deleteDoc(documento);
+  }
+
+  usuarioIniciado(user: Usuario)
+  {
+    this.sesionIniciada = true;
+    this.usuario = user;
   }
 
 }

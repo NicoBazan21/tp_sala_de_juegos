@@ -1,0 +1,24 @@
+<div class="row header d-fixed letras">
+  <div class="p-3 col-sm-6 d-flex justify-content-center" >
+    Bazan Vaquera, Nicolas J.A
+  </div>
+  <div class="div col-sm-2"></div>
+  <div class="div col-sm" >
+    <ng-container *ngIf="sesionIniciada == false else elseSesion">
+      <button class="m-1 btn btn-secondary entypo-login" (click)="irLogin()"> Login</button>
+      <button class="m-1 btn btn-secondary entypo-plus-squared" (click)="irRegistro()"> Registrarse</button>
+    </ng-container>
+
+    <ng-template #elseSesion>
+      <div class="div col-sm">Sesion iniciada: {{usuario.usuario}}</div>
+        <button class="m-1 btn btn-secondary entypo-login" (click)="logout()"> Logout</button>
+    </ng-template>
+  </div>
+</div>
+
+<ng-container *ngIf="login == 0">
+  <app-login (onEnviarUsuario)="atraparUsuario($event)"></app-login>
+</ng-container>
+<ng-container *ngIf="login == 1">
+  <app-register></app-register>
+</ng-container>
