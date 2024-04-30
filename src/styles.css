@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+body
+{
+  background-image: url(https://1.bp.blogspot.com/-3PdTLvtmUwY/XmYuaoCs2DI/AAAAAAABHvo/v0pmEab3Y_Mo7xws3C1NNWmOShC_G1fzgCLcBGAsYHQ/s1600/25-recreativas-arcade.jpg);
+  background-size: cover;
+}
+@import 'ngx-toastr/toastr';
