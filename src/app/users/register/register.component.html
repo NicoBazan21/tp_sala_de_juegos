@@ -20,8 +20,11 @@
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" class="form-control"
+                    <input type="password" class="form-control mb-2"
                     placeholder="Repetir contraseña:" formControlName="repiteClave"/>
+                    <span class="errorForm m-2">
+                      {{this.form.get('repiteClave')?.errors?.['noCoincide']}}
+                    </span>
                   </div>
 
                   <div class="text-center pt-1 mb-2">

@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GamesComponent } from './games.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '',
     component: GamesComponent,
     children:[
+      { path: 'home', component: HomeComponent},
       { path: 'blackjack', loadChildren: () => import('./blackjack/blackjack.module').then(m => m.BlackjackModule) },
       { path: 'mayorOMenor', loadChildren: () => import('./mayor-omenor/mayor-omenor.module').then(m => m.MayorOMenorModule) },
       { path: 'ahorcado', loadChildren: () => import('./ahorcado/ahorcado.module').then(m => m.AhorcadoModule) },

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PalabrasService } from 'src/app/services/palabras.service';
 import { ResultadosService } from 'src/app/services/resultados.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
@@ -21,7 +22,8 @@ export class AhorcadoComponent implements OnInit{
 
   constructor(private palabrasService: PalabrasService,
     private resultadosService: ResultadosService,
-    private userService: UserServiceService){  }
+    private userService: UserServiceService,
+    private router: Router){  }
 
   ngOnInit()
   {
@@ -30,13 +32,11 @@ export class AhorcadoComponent implements OnInit{
 
   onClick($event:any)
   {
-    console.log($event.srcElement.innerText);
     let bandera = false;
     if(this.vidas < 5)
     {
       if(this.palabra.includes($event.srcElement.innerText.toLowerCase()))
       {
-        console.log("la letra esta");
         this.palabraObj.forEach(element => {
           if(element.letra == $event.srcElement.innerText.toLowerCase())
           {
@@ -45,12 +45,16 @@ export class AhorcadoComponent implements OnInit{
           }
         });
       }
-      if(bandera == false)
+      if(this.palabraObj.filter(a=>a.estado == false).length == this.palabra.length)
+      {
+        this.gano();
+      }
+      else if(bandera == false)
       {
         this.vidas++;
         this.img = `${this.path}${this.vidas}.png`;
       }
-      $event.srcElement.disabled = true;
+      $event.srcElement.disabled = true;      
     }
     else
     {
@@ -59,18 +63,26 @@ export class AhorcadoComponent implements OnInit{
         this.vidas++;
         this.img = `${this.path}${this.vidas}.png`;
       }
+      this.resultadosService.subirResultado(this.userService.sesionFirestore.mail,0,"Ahorcado","Perdio");
+      this.finalizar = true;
       Swal.fire({
         title: 'Ohh!... Te has ahorcado.',
         text: 'La palabra era  \"' + this.palabra +'\".',
         icon: 'error',
-        confirmButtonText: 'Ok.',
+        confirmButtonText: 'Intentar de nuevo!',
+        showCancelButton: true,
+        cancelButtonText: "Salir",
         background: '#3b293b',
+      }).then((result)=>
+      {
+        if(result.isConfirmed)
+          this.reiniciar();
+        else
+          this.router.navigateByUrl('/games');
       })
-      this.resultadosService.subirResultado(this.userService.sesionFirestore.mail,0,"Ahorcado","Perdio");
-      this.finalizar = true;
     }
   }
-
+ 
   comenzar()
   {
     this.palabrasService.traerPalabra().subscribe((word)=>
@@ -84,6 +96,21 @@ export class AhorcadoComponent implements OnInit{
         });
       }
       console.log(this.palabra);
+    });
+    document.getElementById('revisar')?.querySelectorAll('button').forEach((a)=>a.disabled = false)
+  }
+
+  gano()
+  {
+    Swal.fire({
+      title: 'Ganaste!.',
+      text: 'El crupier se pasó de 21!.',
+      icon: 'success',
+      confirmButtonText: 'Finalizar',
+      background: '#3b293b',
+    }).then((result)=>
+    {
+      this.reiniciar();
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseError } from '@angular/fire/app';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -46,17 +47,28 @@ export class RegisterComponent implements OnInit{
           this.router.navigateByUrl('/games');
         });
       })
-      .catch((error)=>
+      .catch((error: FirebaseError)=>
       {
-        this.toastr.error(`${error}`, `Error.`,
-          {
-            tapToDismiss: true,
-            progressBar: true,
-            progressAnimation:'decreasing',
-            closeButton: true,
-            payload:true,
-            positionClass: 'toast-top-right'
-          });
+        if(error.code == 'auth/email-already-in-use')
+          this.toastr.error(`El mail solicitado ya se encuentra en uso`, `Error.`,
+            {
+              tapToDismiss: true,
+              progressBar: true,
+              progressAnimation:'decreasing',
+              closeButton: true,
+              payload:true,
+              positionClass: 'toast-top-right'
+            });
+        else
+          this.toastr.error(`${error}`, `Error.`,
+            {
+              tapToDismiss: true,
+              progressBar: true,
+              progressAnimation:'decreasing',
+              closeButton: true,
+              payload:true,
+              positionClass: 'toast-top-right'
+            });
       });
     }
     else

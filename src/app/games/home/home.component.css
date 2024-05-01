@@ -1,5 +1,9 @@
+.card-header {
+    font-size: 1.2rem;
+}
 .gradient-custom-2 {
-  /* fallback for old browsers */
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, #3b293b, rgb(37, 145, 196))
   }
 
@@ -18,18 +22,11 @@
 {
   opacity: 0.9;
 }
-
+div
+{
+    color: white;
+}
 .transparente
 {
-  border-radius: 50%;
-  background: linear-gradient(to right, #3b293b, rgb(37, 145, 196))
-}
-
-input
-{
-  opacity: 0.8;
-}
-
-.errorForm{
-  color: rgb(199, 81, 81);
+  background: linear-gradient(to right, #4e1637, rgb(37, 53, 196))
 }

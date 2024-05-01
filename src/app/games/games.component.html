@@ -6,7 +6,7 @@
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item ">
-      <a routerLink="/games" class="nav-link text-white">
+      <a routerLink="/games/home" class="nav-link text-white">
         <svg class="bi me-2" width="16" height="16"></svg>
         Home
       </a>
@@ -69,4 +69,6 @@
   <button class="text-white btn transparente" (click)="cerrarSesion()">Cerrar sesion</button>
 </div>
 
-<div class="marca col-8"><router-outlet></router-outlet></div>
+<div class="marca col-7">
+  <router-outlet></router-outlet>
+</div>

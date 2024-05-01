@@ -6,9 +6,9 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
   },
   {
-    path: 'games', loadChildren: () => import('./games/games.module').then(m => m.GamesModule),
-    canActivate: [LogGuard],
-    canDeactivate: [LogGuard]
+    path: 'games', loadChildren: () => import('./games/games.module').then(m => m.GamesModule)
+    // canActivate: [LogGuard],
+    // canDeactivate: [LogGuard]
   },
 ];
 
